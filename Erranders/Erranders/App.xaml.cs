@@ -19,7 +19,7 @@ namespace Erranders
         {
             InitializeComponent();
 
-            await NavigationService.NavigateAsync("NavigationPage/MainPage");
+            await NavigationService.NavigateAsync("NavigationPage/ErranderMainTabbedPage");
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
@@ -28,6 +28,8 @@ namespace Erranders
 
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
+            containerRegistry.RegisterForNavigation<ErranderMainTabbedPage, ErranderMainTabbedPageViewModel>();
+            containerRegistry.RegisterForNavigation<ErranderEditProfilePage, ErranderEditProfilePageViewModel>();
         }
     }
 }

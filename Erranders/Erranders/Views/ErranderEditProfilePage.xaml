@@ -1,0 +1,174 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             xmlns:extensions="clr-namespace:Erranders.Extensions"            
+             xmlns:local="clr-namespace:Erranders.Controls"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="Erranders.Views.ErranderEditProfilePage"
+             Title="Edit Profile">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <extensions:BoolValueInverterConverter x:Key="BoolConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+        <ScrollView AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.5, 0.5, 1, 1" Margin="5">
+            <StackLayout AbsoluteLayout.LayoutBounds="0.5,0,1,1" AbsoluteLayout.LayoutFlags="All" Padding="12" Margin="5">
+                <StackLayout Spacing="10" VerticalOptions="Center" HorizontalOptions="Center" Orientation="Horizontal">
+                    <controls:CircleImage 
+                                Source="{Binding ProspectProfilePicture}"
+                                Aspect="AspectFill"
+                                HeightRequest="90"
+                                WidthRequest="90"
+                                BorderThickness="3"
+                                BorderColor="#909fc5">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding ChangePictureCommand}"/>
+                        </Image.GestureRecognizers>
+                    </controls:CircleImage>
+                    <Label Text="Change picture" TextColor="DodgerBlue" FontSize="Small" HorizontalTextAlignment="Center" 
+                       HorizontalOptions="FillAndExpand" VerticalOptions="End" VerticalTextAlignment="End">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding ChangePictureCommand}"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                </StackLayout>
+
+                <StackLayout>
+                    <Grid RowSpacing="15">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <StackLayout Grid.Row="0" HorizontalOptions="FillAndExpand" Orientation="Vertical" Spacing="-4">
+                            <Label Text=" First Name" FontSize="Micro" TextColor="DarkGray" HorizontalOptions="Start"/>
+                            <local:CustomEntry
+                                        Placeholder= "Enter first name" 
+                                        TextColor="Black"
+                                        FontSize="Small"    
+                                        PlaceholderColor="DarkGray"
+                                        Text="{Binding FirstName}"
+                                       IsEnabled="{Binding IsBusy, Converter={StaticResource BoolConverter}}">
+                            </local:CustomEntry>
+                        </StackLayout>
+                        <StackLayout Grid.Row="1" HorizontalOptions="FillAndExpand" Orientation="Vertical" Spacing="-4">
+                            <Label Text=" Last Name" FontSize="Micro" TextColor="DarkGray" HorizontalOptions="Start"/>
+                            <local:CustomEntry
+                                        Placeholder= "Enter last name" 
+                                        TextColor="Black"
+                                        FontSize="Small"    
+                                        PlaceholderColor="DarkGray"
+                                        Text="{Binding LastName}"
+                                       IsEnabled="{Binding IsBusy, Converter={StaticResource BoolConverter}}">
+                            </local:CustomEntry>
+                        </StackLayout>
+                        <StackLayout Grid.Row="2" HorizontalOptions="FillAndExpand" Orientation="Vertical" Spacing="-4">
+                            <Label Text=" Middle Name" FontSize="Micro" TextColor="DarkGray" HorizontalOptions="Start"/>
+                            <local:CustomEntry
+                                        Placeholder= "Enter middle name" 
+                                        TextColor="Black"
+                                        FontSize="Small"    
+                                        PlaceholderColor="DarkGray"
+                                        Text="{Binding MiddleName}"
+                                       IsEnabled="{Binding IsBusy, Converter={StaticResource BoolConverter}}">
+                            </local:CustomEntry>
+                        </StackLayout>
+                        <StackLayout Grid.Row="3" HorizontalOptions="FillAndExpand" Orientation="Vertical" Spacing="-4">
+                            <Label Text=" State" FontSize="Micro" TextColor="DarkGray" HorizontalOptions="Start"/>
+                            <local:CustomPicker Title="Select state"
+                                            TitleColor="DarkGray"
+                                            TextColor="Black"
+                                            FontSize="Small"
+                                            SelectedItem="{Binding State}">
+                                <Picker.Items>
+                                    <x:String>Abuja</x:String>
+                                    <x:String>Lagos</x:String>
+                                    <x:String>Ogun</x:String>
+                                    <x:String>Rivers</x:String>
+                                </Picker.Items>
+
+                            </local:CustomPicker>
+                        </StackLayout>
+
+
+                        <StackLayout Grid.Row="4" HorizontalOptions="FillAndExpand" Orientation="Vertical" Spacing="-4">
+                            <Label Text=" Home Address" FontSize="Micro" TextColor="DarkGray" HorizontalOptions="Start"/>
+                            <local:CustomEntry
+                                        Placeholder= "Enter home address" 
+                                        TextColor="Black"
+                                        FontSize="Small"    
+                                        PlaceholderColor="DarkGray"
+                                        Text="{Binding HomeAddress}"
+                                       IsEnabled="{Binding IsBusy, Converter={StaticResource BoolConverter}}">
+                            </local:CustomEntry>
+                        </StackLayout>
+
+                        <StackLayout Grid.Row="5" HorizontalOptions="FillAndExpand" Orientation="Vertical" Spacing="-4">
+                            <Label Text=" Phone" FontSize="Micro" TextColor="DarkGray" HorizontalOptions="Start"/>
+                            <local:CustomEntry
+                                        Placeholder= "Enter phone number" 
+                                        TextColor="Black"
+                                        FontSize="Small"   
+                                        PlaceholderColor="DarkGray"
+                                        Keyboard="Telephone"
+                                        Text="{Binding PhoneNumber}"
+                                       IsEnabled="{Binding IsBusy, Converter={StaticResource BoolConverter}}">
+                            </local:CustomEntry>
+                        </StackLayout>
+                        <StackLayout Grid.Row="6" HorizontalOptions="FillAndExpand" Orientation="Vertical" Spacing="-4">
+                            <Label Text=" Email" FontSize="Micro" TextColor="DarkGray" HorizontalOptions="Start"/>
+                            <local:CustomEntry
+                                        Placeholder= "Enter email address" 
+                                        TextColor="Black"
+                                        FontSize="Small"  
+                                        Keyboard="Email"
+                                        PlaceholderColor="DarkGray"
+                                        Text="{Binding EmailAddress}"
+                                       IsEnabled="{Binding IsBusy, Converter={StaticResource BoolConverter}}">
+                            </local:CustomEntry>
+                        </StackLayout>
+
+                        <local:CustomEntry  
+                                        Grid.Row="7"
+                                        Placeholder="Change Password" 
+                                        FontSize="Small"
+                                        IsPassword="True"
+                                        TextColor="Black"
+                                        PlaceholderColor="DarkGray"
+                                        Text="{Binding Password}"
+                                        IsEnabled="{Binding IsBusy, Converter={StaticResource BoolConverter}}"/>
+
+                        <local:CustomEntry Grid.Row="8" Placeholder="BVN" FontSize="Small" Keyboard="Telephone" MaxLength="11" Text="{Binding BVN}"
+                                           TextColor="Black" PlaceholderColor="DarkGray" IsEnabled="{Binding IsBusy, Converter={StaticResource BoolConverter}}"/>
+
+                        <ActivityIndicator Color="DodgerBlue" Grid.Row="9"
+                                               HorizontalOptions="Center"
+                                               IsRunning="{Binding IsBusy}" />
+                    </Grid>
+                </StackLayout>
+
+                <StackLayout Margin="0,10,0,10">
+                    <Button Text="SAVE CHANGES" 
+                            CornerRadius="6"
+                            TextColor="White" 
+                            BackgroundColor="DodgerBlue"
+                            FontFamily="{StaticResource AXASOL_FONTS_DefaultFontFamily}"
+                            Command="{Binding SaveCommand}"
+                            IsEnabled="{Binding IsBusy, Converter={StaticResource BoolConverter}}"/>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </AbsoluteLayout>
+
+</ContentPage>
