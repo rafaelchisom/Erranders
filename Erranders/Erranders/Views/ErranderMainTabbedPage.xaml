@@ -64,6 +64,7 @@
                         <Frame.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding SignOutCommand}"/>
                         </Frame.GestureRecognizers>
+                        
                     </Frame>
                 </StackLayout>
             </AbsoluteLayout>
